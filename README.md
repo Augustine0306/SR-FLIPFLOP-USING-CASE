@@ -33,46 +33,52 @@ By using three variable K-Map, we can get the simplified expression for next sta
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
 **Procedure**
- 1.Type the program in Quartus software.
-
-2.Compile and run the program.
-
-3.Generate the RTL schematic and save the logic diagram.
-
-4.Create nodes for inputs and outputs to generate the timing diagram.
-
-5.For different input combinations generate the timing diagram.
-
+~~~
+Step 1: Open Quartus II in your laptop.
+Step 2: Write code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+Step 3: Run compilation to check for errors.
+Step 4: Open waveform output and load input values.
+Step 5: Run simulation to get the output.
+Step 6: Open in RTL viewers to get RTL diagram output.
+~~~
 
 **PROGRAM**
-```
-NAME : AUGUSTINE J
-REGISTER NUMBER:212222240015
-module sr_ff(q, q_bar, s,r,clk, reset);
-input s,r,clk, reset;
-output reg q;
-output q_bar;
 
-always@(posedge clk) begin
-if(!reset) q<=0;
-else begin
-  case ({s,r})
-    2'b00: q <= q;
-	 2'b01: q <= 1'b0;
-	 2'b10: q <= 1'b1;
-	 2'b11: q <= 1'bx;
-	 default: q <= q;
-	 endcase
-	end
-  end	
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by: AUGUSTINE J
+
+RegisterNumber: 212222240015
+*/
+~~~
+module sr_flipflop(q, q_bar, s, r, clk, reset);
+  input s, r, clk, reset;
+  output reg q;
+  output q_bar;
+
+  always @(posedge clk) begin
+    if (!reset) 
+      q <= 1'b0;
+    else begin
+      case ({s, r})
+        2'b01: q <= 1'b0;
+        2'b10: q <= 1'b1;
+        2'b11: q <= 1'bx;
+        default: q <= q;
+      endcase
+    end
+  end
+
   assign q_bar = ~q;
-  endmodule
-```
+endmodule
+~~~
 **RTL LOGIC FOR FLIPFLOPS**
-![image](https://github.com/Augustine0306/SR-FLIPFLOP-USING-CASE/assets/119404460/2f09776e-e023-4962-88aa-a8f3c59fb49c)
+
+![image](https://github.com/Augustine0306/SR-FLIPFLOP-USING-CASE/assets/119404460/a28b519c-8ed5-446a-8480-e7ec30739e16)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![image](https://github.com/Augustine0306/SR-FLIPFLOP-USING-CASE/assets/119404460/6b91fc76-dd70-4a28-8cc9-b70b9c6b43f4)
+
+![image](https://github.com/Augustine0306/SR-FLIPFLOP-USING-CASE/assets/119404460/223b25c7-d211-40b5-b5cf-e9ac7c832b54)
 
 **RESULTS**
-Thus, SR flipflop has been implemented using verilog and their functionality has been validated using their functional tables.
+
+Thus the program to implement a SR flipflop using verilog and validating their functionality using their functional tables is successfully completed
